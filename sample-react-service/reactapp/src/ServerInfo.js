@@ -4,7 +4,7 @@ import "./App.css";
 class ServerInfo extends Component {
 
     componentDidMount() {
-        setInterval(this.getServerData, 20000);
+        setInterval(this.getServerData, 2000);
     }
 
     getServerData = () => {

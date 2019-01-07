@@ -4,7 +4,7 @@ import "./App.css";
 class ProcessDefsInfo extends Component {
 
     componentDidMount() {
-        setInterval(this.getProcessDefsData, 20000);
+        setInterval(this.getProcessDefsData, 2000);
     }
 
     getProcessDefsData = () => {
