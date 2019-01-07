@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>League of Legends - jBPM Business app demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            background: url('../pagebackground.jpg');
+            background-repeat: no-repeat;
+            display: compact;
+            height: 100%;
+        }
+
+        .center-div {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 60%;
+            height: 90%;
+            background-color: #ccc;
+            border-radius: 3px;
+            background-color: #f8f9fa9c;
+        }
+
+        .navbar-xs {
+            min-height: 28px;
+            height: 28px;
+        }
+
+        .navbar-xs .navbar-brand {
+            padding: 0px 12px;
+            font-size: 16px;
+            line-height: 28px;
+        }
+
+        .navbar-xs .navbar-nav > li > a {
+            padding-top: 0px;
+            padding-bottom: 0px;
+            line-height: 28px;
+        }
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-xs">
+    <a class="navbar-brand" href="/riotdemo" style="color: #fff;">
+        * Summoner Search
+    </a>
+</nav>
+<br/><br/>
+<div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron center-div">
+        <div class="row ">
+            <div class="col-md-4">
+                <img src="/usericon.png" class="w-100">
+            </div>
+            <div class="col-md-8 px-3">
+                <div class="card-block px-3">
+                    <h4 class="card-title"><strong>Match info for</strong></h4>
+                    <p class="card-text"><strong>Summoner name:</strong> <span th:text="${summonerInfo.summonerName}"/>
+                    </p>
+                    <p class="card-text"><strong>Summoner platform:</strong>
+                        <span th:text="${summonerInfo.summonerPlatform}"/></p>
+                    <p class="card-text"><strong>Games:</strong> <span th:text="${matchAverages.totalMatches}"/></p>
+                    <p class="card-text"><strong>Games Won:</strong> <span th:text="${matchAverages.totalWins}"/></p>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card-deck">
+                    <div class="card mb-4">
+                        <div class="view overlay">
+                            <img class="card-img-top" src="/baron1.png" style="height: 130px;">
+                            <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body jbpm-card-body">
+                            <p>
+                            <center><strong>Baron Kills</strong></center>
+                            </p>
+                            <p>
+                            <center><span th:text="'Total: ' + ${matchAverages.totalBaronKills}"/></center>
+                            </p>
+                            <p>
+                            <center><span th:text="'Per Match: ' + ${#numbers.formatDecimal(matchAverages.avgBaronKills, 0, 'DEFAULT', 2, 'DEFAULT')}"/></center>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="view overlay">
+                            <img class="card-img-top" src="/dragon.jpg" style="height: 130px;>
+                        <a href=" #!">
+                            <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body jbpm-card-body">
+                            <p>
+                            <center><strong>Dragon Kills</strong></center>
+                            </p>
+                            <p>
+                            <center><span th:text="'Total: ' + ${matchAverages.totalDragonKills}"/></center>
+                            </p>
+                            <p>
+                            <center><span th:text="'Per Match: ' + ${#numbers.formatDecimal(matchAverages.avgDragonKills, 0, 'DEFAULT', 2, 'DEFAULT')}"/></center>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="view overlay">
+                            <img class="card-img-top" src="/firstblood.png" style="height: 130px;>
+                        <a href=" #!">
+                            <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body jbpm-card-body">
+                            <p>
+                            <center><strong>First Blood</strong></center>
+                            </p>
+                            <p>
+                            <center><span th:text="'Total: ' + ${matchAverages.totalFirstBlood}"/></center>
+                            </p>
+                            <p>
+                            <center><span th:text="'Per Match: ' + ${#numbers.formatDecimal(matchAverages.avgFirstBlood, 0, 'DEFAULT', 2, 'DEFAULT')}"/></center>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="view overlay">
+                            <img class="card-img-top" src="/tower.jpg" style="height: 130px;>
+                        <a href=" #!">
+                            <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body jbpm-card-body">
+                            <p>
+                            <center><strong>Tower Kills</strong></center>
+                            </p>
+                            <p>
+                            <center><span th:text="'Total: ' + ${matchAverages.totalTowerKills}"/></center>
+                            </p>
+                            <p>
+                            <center><span th:text="'Per Match: ' + ${#numbers.formatDecimal(matchAverages.avgTowerKills, 0, 'DEFAULT', 2, 'DEFAULT')}"/></center>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
